@@ -2,12 +2,13 @@ source 'https://rubygems.org'
 
 ruby '2.5.3'
 
-gem 'activeadmin', '1.0.0'
-gem 'delayed_job_active_record', '~> 4.1.2'
+gem 'activeadmin'
+gem 'delayed_job_active_record'
 gem 'devise'
 gem 'pg'
-gem 'rails', '~> 4.2'
-gem 'unicorn'
+gem 'rails', '~> 5.2'
+gem 'puma'
+gem 'bootsnap'
 
 
 # Gems used only for assets and not required
@@ -18,12 +19,18 @@ group :assets do
   gem 'uglifier'
 end
 
+group :development do
+  gem 'listen'
+end
+
 group :development, :test do
-  gem 'pry'
-  gem 'rspec-rails', '3.4.2'
-  gem 'rspec-mocks', '3.4.1'
-  gem 'test-unit', '~> 3.0'
-  gem "dotenv-rails"
+  gem 'byebug'
+  gem 'rspec-rails', '~> 3.9'
+  # gem "dotenv-rails"
+end
+
+group :test do
+  gem 'rails-controller-testing'
 end
 
 # To use ActiveModel has_secure_password

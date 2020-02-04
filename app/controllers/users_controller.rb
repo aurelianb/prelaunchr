@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_filter :skip_first_page, only: :new
-  before_filter :handle_ip, only: :create
+  before_action :skip_first_page, only: :new
+  before_action :handle_ip, only: :create
 
   def new
     @bodyId = 'home'
@@ -15,7 +15,7 @@ class UsersController < ApplicationController
 
   def create
     ref_code = cookies[:h_ref]
-    email = params[:user][:email]
+    email = user_params[:email]
     @user = User.new(email: email)
     @user.referrer = User.find_by_referral_code(ref_code) if ref_code
 
@@ -82,5 +82,9 @@ class UsersController < ApplicationController
       current_ip.count += 1
       current_ip.save
     end
+  end
+
+  def user_params
+    params.require(:user).permit(:email)
   end
 end

@@ -1,8 +1,15 @@
+defaults: &defaults
+  adapter: postgresql
+  pool: 5
+  host: <%= ENV['DB_HOST'] %>
+  username: <%= ENV['DB_USERNAME'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
 development:
-  adapter: postgresql
-  database: prelaunchr_development
-  host: localhost
+  <<: *defaults
+  database: <%= ENV['DB_NAME'] %>_development
 test:
-  adapter: postgresql
-  database: prelaunchr_test
-  host: localhost
+  <<: *defaults
+  database: <%= ENV['DB_NAME'] %>_test
+production:
+  <<: *defaults
+  database: <%= ENV['DB_NAME'] %>_production

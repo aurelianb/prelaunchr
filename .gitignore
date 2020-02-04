@@ -46,3 +46,4 @@ bower.json
 .elasticbeanstalk
 
 /.env
+.idea/
